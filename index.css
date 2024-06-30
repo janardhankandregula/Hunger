@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  height: 150px;
+}
+.logo {
+  width: 150px;
+  position: relative;
+  top: 15px;
+  left: 20px;
+}
+
+.nav-items {
+  display: flex;
+  margin-right: 30px;
+}
+.nav-items > li {
+  margin-right: 50px;
+  list-style-type: none;
+  margin-top: 49px;
+  font-size: 16px;
+}
