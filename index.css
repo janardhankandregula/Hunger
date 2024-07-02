@@ -21,3 +21,44 @@
   margin-top: 49px;
   font-size: 16px;
 }
+.resCard {
+  width: 200px;
+  /* height: 350px; */
+  /* border: 1px solid black; */
+  /* margin: 20px; */
+  /* border-radius: 30px; */
+  margin-top: 50px;
+  margin-right: 65px;
+  margin-bottom: 30px;
+  position: relative;
+  left: 35px;
+  background-color: lavenderblush;
+}
+.resImage {
+  width: 200px;
+  height: 150px;
+  border-radius: 30px;
+}
+h3 {
+  margin-left: 10px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.cardContainer {
+  word-wrap: break-word;
+}
+.cardContainer h4 {
+  margin-left: 10px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.IntResCont {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+.resCard:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 30px;
+}
