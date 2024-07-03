@@ -64,7 +64,7 @@ h3 {
 }
 .topRated button {
   position: relative;
-  top: 10px;
+  top: 20px;
   left: 43%;
 
   font-size: 16px;
@@ -104,4 +104,49 @@ h3 {
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+.vegCheckBox label {
+  position: relative;
+  top: 25px;
+  left: 45%;
+}
+.searchBar {
+  position: relative;
+  top: 5px;
+
+  display: flex;
+  width: 100%;
+  max-width: 400px; /* Adjust max-width as needed */
+  margin: 0 auto;
+}
+.searchBar input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+.searchBar button {
+  font-size: 16px;
+  border: 1px solid #ccc;
+
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  left: 10px;
+}
+.searchButton:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+.searchButton:focus {
+  outline: none;
+}
+
+.searchButton:active {
+  background-color: #3e8e41; /* Darker green when button is pressed */
 }

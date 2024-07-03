@@ -6,7 +6,22 @@ import { useState } from "react";
 
 const BodyComponent = () => {
   const [reslist, setResList] = useState(restaurantList);
+  const [searchTerm, setSearchTerm] = useState("");
   console.log(reslist[0]);
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const searched = () => {
+    const filteredList = restaurantList.filter((res) => {
+      return res.info.name == searchTerm;
+    });
+
+    filteredList.length > 0
+      ? setResList(filteredList)
+      : setResList(restaurantList);
+  };
 
   const highRatedRestaurants = () => {
     const filteredList = restaurantList.filter((res) => {
@@ -20,8 +35,21 @@ const BodyComponent = () => {
     });
     setResList(filteredList);
   };
+
   return (
     <div className="bodyContainer">
+      <div className="searchBar">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleChange}
+          className="searchInput"
+        />
+        <button className="searchButton" onClick={searched}>
+          Search
+        </button>
+      </div>
       <div className="topRated">
         <button onClick={highRatedRestaurants}>Top Rated Restaurants</button>
       </div>
