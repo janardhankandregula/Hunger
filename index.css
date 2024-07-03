@@ -53,7 +53,7 @@ h3 {
 .IntResCont {
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 .resCard:hover {
   transform: scale(1.1);
@@ -61,4 +61,47 @@ h3 {
   border: 1px solid black;
   cursor: pointer;
   border-radius: 30px;
+}
+.topRated button {
+  position: relative;
+  top: 10px;
+  left: 43%;
+
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  background-color: #4caf50; /* Green */
+  color: white;
+  border-radius: 5px;
+}
+.topRated button:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+.topRated button:active {
+  background-color: #3e8e41; /* Dark green */
+}
+
+/* Disabled state */
+.topRated button:disabled {
+  background-color: #dddddd; /* Light gray */
+  color: #666666; /* Dark gray */
+  cursor: not-allowed;
+}
+.vegCheckBox label {
+  cursor: pointer;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 20px;
+}
+.vegCheckBox input:checked {
+  /* content: ""; */
+  /* position: absolute;
+  display: block; */
+  /* left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px; */
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
