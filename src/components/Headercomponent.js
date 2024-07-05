@@ -1,6 +1,12 @@
+import { useState } from "react";
 import { HEADER_LOGO } from "../utilis/constants";
 
 const HeaderComponent = () => {
+  const [login, setLogIn] = useState(false);
+  const clicked = () => {
+    setLogIn(!login);
+  };
+
   return (
     <div className="container">
       <div>
@@ -12,6 +18,14 @@ const HeaderComponent = () => {
           <li>About</li>
           <li>Contact Us</li>
           <li>Cart</li>
+          <div>
+            <button
+              className={`loginBtn ${login ? "login" : "logout"}`}
+              onClick={clicked}
+            >
+              {login ? "log-out" : "log-in"}
+            </button>
+          </div>
         </ul>
       </div>
     </div>
