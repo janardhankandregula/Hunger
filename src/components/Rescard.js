@@ -1,5 +1,6 @@
 // import { IMG_URL } from "../utilis/constants";
 import IMG_URL from "../utilis/constants";
+import { useEffect } from "react";
 const ResCard = (props) => {
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
     props.resdata.info;

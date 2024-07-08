@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./components/Headercomponent";
 import BodyComponent from "./components/Bodycomponent";
+import InfiniteScrolling from "./components/InfiniteScrolling";
 
 const AppLayout = () => {
   return (

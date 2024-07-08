@@ -33,6 +33,7 @@
   position: relative;
   left: 35px;
   background-color: lavenderblush;
+  flex: 0 0 auto;
 }
 .resImage {
   width: 200px;
@@ -185,4 +186,108 @@ h3 {
 }
 .loginBtn.logout {
   background-color: #007bff;
+}
+.Carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.CarouselCards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: visible;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+  visibility: visible;
+}
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+.chainTitle {
+  position: relative;
+  top: 40px;
+  left: 30px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.mindCardRes {
+  width: 250px;
+}
+.carousel-prev2,
+.carousel-next2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.carousel-prev2 {
+  left: 10px;
+}
+
+.carousel-next2 {
+  right: 10px;
+}
+.mainCarousel {
+  /* display: flex;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative; */
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-left: 30px;
+}
+.mindCard {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: visible;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+  visibility: visible;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-right: 10px;
+  width: 250px;
+}
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+/* .carousel-wrapper > * {
+  flex: 0 0 100%;
+} */
+
+/* .mainTilte {
+  position: relative;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  top: 50px;
+} */
+
+.mainTitleTest {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  position: relative;
+  top: 20px;
+  left: 20px;
 }

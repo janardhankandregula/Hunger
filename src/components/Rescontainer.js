@@ -1,5 +1,7 @@
 import ResCard from "./Rescard";
 import restaurantList from "../utilis/mockdata";
+import { useEffect } from "react";
+import React from "react";
 
 const ResContainer = (props) => {
   return (

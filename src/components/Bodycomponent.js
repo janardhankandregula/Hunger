@@ -4,12 +4,16 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import ShimmerUi from "./ShimmerUi";
+import InfiniteScrolling from "./InfiniteScrolling";
+import CarouselComponent from "./CarouselComponent";
+import CarouselMainComponent from "./CarouselMainComponent";
 
 const BodyComponent = () => {
   const inititialState = [];
   const [reslist, setResList] = useState(inititialState);
   const [originalResList, setOriginalResList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [rawData, setRawData] = useState([]);
 
   useEffect(() => {
     const fetchRestaurantData = async () => {
@@ -21,6 +25,7 @@ const BodyComponent = () => {
           response.data.data.cards[4].card.card.gridElements.infoWithStyle
             .restaurants
         );
+        setRawData(response);
 
         setResList(
           response.data.data.cards[4].card.card.gridElements.infoWithStyle
@@ -36,10 +41,6 @@ const BodyComponent = () => {
     };
     fetchRestaurantData();
   }, []);
-
-  // useEffect(() => {
-  //   resetList();
-  // }, []);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -60,10 +61,6 @@ const BodyComponent = () => {
       searched();
     }
   };
-
-  // const resetList = () => {
-  //   setResList(originalResList);
-  // };
 
   const handleKeyDown = (event) => {
     if (event.key === "Backspace") {
@@ -118,7 +115,8 @@ const BodyComponent = () => {
           </div>
         </div>
       )}
-
+      <CarouselMainComponent resdata={rawData} />
+      <CarouselComponent resdata={rawData} />
       <ResContainer resdataFiltered={reslist} />
     </div>
   );
