@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { HEADER_LOGO } from "../utilis/constants";
+import { Link } from "react-router-dom";
 
 const HeaderComponent = () => {
   const [login, setLogIn] = useState(false);
@@ -14,9 +15,18 @@ const HeaderComponent = () => {
       </div>
       <div className="nav-Bar">
         <ul className="nav-items">
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact Us</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+
+          <li>
+            <Link to="/About">About</Link>
+          </li>
+
+          <li>
+            <Link to="/Contact">Contact</Link>
+          </li>
+
           <li>Cart</li>
           <div>
             <button

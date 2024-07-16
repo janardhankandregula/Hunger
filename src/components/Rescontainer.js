@@ -5,12 +5,15 @@ import React from "react";
 
 const ResContainer = (props) => {
   return (
-    <div className="IntResCont">
-      {props.resdataFiltered.map((restaurantData) => {
-        return (
-          <ResCard key={restaurantData.info.id} resdata={restaurantData} />
-        );
-      })}
+    <div>
+      {/* <h1>Restaurants with online food delivery in bangalore</h1> */}
+      <div className="IntResCont">
+        {props.resdataFiltered.map((restaurantData) => {
+          return (
+            <ResCard key={restaurantData.info.id} resdata={restaurantData} />
+          );
+        })}
+      </div>
     </div>
   );
 };

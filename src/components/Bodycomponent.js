@@ -21,10 +21,8 @@ const BodyComponent = () => {
         const response = await axios.get(
           "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         );
-        console.log(
-          response.data.data.cards[4].card.card.gridElements.infoWithStyle
-            .restaurants
-        );
+        // console.log(response.data.data);
+
         setRawData(response);
 
         setResList(
