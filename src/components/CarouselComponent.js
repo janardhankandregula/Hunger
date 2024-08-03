@@ -1,54 +1,90 @@
-import restaurantList from "../utilis/mockdata";
-import { useState } from "react";
-import ResCard from "./Rescard";
-
-
+import restaurantList from '../utilis/mockdata';
+import { useState } from 'react';
+import ResCard from './Rescard';
 
 const CarouselComponent = (props) => {
-    const title=props?.resdata?.data?.data?.cards[1]?.card?.card?.header?.title
-    
-    // console.log(props?.resdata?.data?.data?.cards[1]?.card?.card?.header?.title)
-      const restaurantChain =
-      props?.resdata?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?
-        .restaurants;
-        
+  // console.log(props);
+  const title = props?.resdata[1]?.card?.card?.header?.title;
 
-      const [currentIndex, setCurrentIndex] = useState(0);
-      const itemWidth = 300;
+  const restaurantChain =
+    props?.resdata[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
-      const moveToNextSlide = () => {
-          const nextIndex = (currentIndex + 1) % restaurantChain.length;
-          setCurrentIndex(nextIndex);
-        };
-        const moveToPrevSlide = () => {
-          const nextIndex = (currentIndex - 1+ restaurantChain.length) % restaurantChain.length;
-          setCurrentIndex(nextIndex);
-        };
+  const [currentIndex, setCurrentIndex] = useState(0.3);
+  const itemWidth = 300;
 
-    if (!restaurantChain) {
-      return null;
-    }
+  const moveToNextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex < restaurantChain.length - 0.01 ? prevIndex + 1.1 : prevIndex
+    );
+  };
+  const moveToPrevSlide = () => {
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1.1, 0));
+  };
+
+  if (!restaurantChain) {
+    return null;
+  }
 
   return (
-    <div className="Carousel">
-        <div>
-            <h1 className="chainTitle">{title}</h1>
-            
-            {/* <h1 className="chainTitle">Top Restaurant chains in Bangalore</h1> */}
-            </div>
-      <div
-        className="CarouselCards"
-        style={{ transform: `translateX(-${currentIndex * itemWidth}px)` }}
-      >
-        {restaurantChain.map((res) => {
-          return <ResCard key={res.info.id} resdata={res} />;
-        })}
+    <div className='carousel relative mx-auto max-w-screen-xl'>
+      <div>
+        <h1 className='font-bold text-4xl font-sans py-4 my-4 mt-10'>
+          {title}
+        </h1>
       </div>
-      <button className="carousel-prev" onClick={moveToPrevSlide}>
-        Prev
+      <div className='flex overflow-hidden'>
+        <div
+          className='flex transition-transform duration-300 ease-in-out'
+          style={{
+            transform: `translateX(-${currentIndex * itemWidth}px)`,
+          }}
+        >
+          {restaurantChain.map((res) => {
+            return <ResCard key={res.info.id} resdata={res} />;
+          })}
+        </div>
+      </div>
+      <button
+        className='absolute top-4 right-[80] transform -translate-y-1/2 bg-gray-200 px-3 py-2 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out'
+        onClick={moveToPrevSlide}
+      >
+        <div className='rounded-full bg-white p-1'>
+          <svg
+            className='w-6 h-6 text-gray-600'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M15 19l-7-7 7-7'
+            />
+          </svg>
+        </div>
+        {/* Prev */}
       </button>
-      <button className="carousel-next" onClick={moveToNextSlide}>
-        Next
+      <button
+        className='absolute top-4 right-[10]  transform -translate-y-1/2 bg-gray-200 px-3 py-2 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out'
+        onClick={moveToNextSlide}
+      >
+        <div className='rounded-full bg-white p-1'>
+          <svg
+            className='w-6 h-6 text-gray-600'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M9 5l7 7-7 7'
+            />
+          </svg>
+        </div>
+        {/* Next */}
       </button>
     </div>
   );

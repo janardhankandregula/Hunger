@@ -1,18 +1,31 @@
-import ResCard from "./Rescard";
-import restaurantList from "../utilis/mockdata";
-import { useEffect } from "react";
-import React from "react";
+import ResCard from './Rescard';
+import { RescardWithFastDelivery } from './Rescard';
+
+import React from 'react';
 
 const ResContainer = (props) => {
+  const HOCWithRescard = RescardWithFastDelivery(ResCard);
   return (
-    <div>
-      {/* <h1>Restaurants with online food delivery in bangalore</h1> */}
-      <div className="IntResCont">
-        {props.resdataFiltered.map((restaurantData) => {
-          return (
-            <ResCard key={restaurantData.info.id} resdata={restaurantData} />
-          );
-        })}
+    <div className='relative mx-auto max-w-screen-2xl'>
+      <div className='pl-20'>
+        <h1 className='font-bold text-4xl font-sans my-10 mb-5 py-4 pl-10'>
+          {props?.resdataFiltered[2]?.card?.card?.title}
+        </h1>
+      </div>
+      <div className='flex flex-wrap relative'>
+        {/* {console.log(
+          props?.resdataFiltered[4]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants
+        )} */}
+        {props?.resdataFiltered[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
+          (restaurantData) => {
+            return restaurantData.info.sla.deliveryTime <= 30 ? (
+              <HOCWithRescard resdata={restaurantData} />
+            ) : (
+              <ResCard key={restaurantData.info.id} resdata={restaurantData} />
+            );
+          }
+        )}
       </div>
     </div>
   );

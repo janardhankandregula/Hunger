@@ -1,41 +1,49 @@
-import { useState } from "react";
-import { HEADER_LOGO } from "../utilis/constants";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { HEADER_LOGO } from '../utilis/constants';
+import { Link } from 'react-router-dom';
+import useCheckInternet from '../utilis/useCheckInternet';
 
 const HeaderComponent = () => {
   const [login, setLogIn] = useState(false);
   const clicked = () => {
     setLogIn(!login);
   };
+  const internetStatus = useCheckInternet();
+  console.log(internetStatus);
 
   return (
-    <div className="container">
+    <div className='flex justify-between items-center bg-pink-100 shadow-lg'>
       <div>
-        <img className="logo" src={HEADER_LOGO} alt="logoe" />
+        <img className='w-56' src={HEADER_LOGO} alt='logoe' />
       </div>
-      <div className="nav-Bar">
-        <ul className="nav-items">
-          <li>
-            <Link to="/">Home</Link>
+      <div className='nav-Bar'>
+        <ul className='flex p-4 m-4'>
+          <li className='px-4'>onlineStatus:{internetStatus ? '✅' : '❌'}</li>
+          <li className='px-4'>
+            <Link to='/'>Home</Link>
           </li>
 
-          <li>
-            <Link to="/About">About</Link>
+          <li className='px-4'>
+            <Link to='/About'>About</Link>
           </li>
 
-          <li>
-            <Link to="/Contact">Contact</Link>
+          <li className='px-4'>
+            <Link to='/Contact'>Contact</Link>
+          </li>
+          <li className='px-4'>
+            <Link to='/Grocery'>Grocery</Link>
           </li>
 
-          <li>Cart</li>
-          <div>
+          <li className='px-4'>Cart</li>
+
+          <li className='px-4'>
             <button
-              className={`loginBtn ${login ? "login" : "logout"}`}
+              className={`loginBtn ${login ? 'login' : 'logout'}`}
               onClick={clicked}
             >
-              {login ? "log-out" : "log-in"}
+              {login ? 'log-out' : 'log-in'}
             </button>
-          </div>
+          </li>
         </ul>
       </div>
     </div>

@@ -1,44 +1,23 @@
-import ResContainer from "./Rescontainer";
+import ResContainer from './Rescontainer';
 
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
-import ShimmerUi from "./ShimmerUi";
-import InfiniteScrolling from "./InfiniteScrolling";
-import CarouselComponent from "./CarouselComponent";
-import CarouselMainComponent from "./CarouselMainComponent";
+import { useState } from 'react';
+
+import ShimmerUi from './ShimmerUi';
+
+import CarouselComponent from './CarouselComponent';
+import CarouselMainComponent from './CarouselMainComponent';
+import useRestaurantData from '../utilis/useRestaurantData';
+import useCheckInternet from '../utilis/useCheckInternet';
 
 const BodyComponent = () => {
-  const inititialState = [];
-  const [reslist, setResList] = useState(inititialState);
-  const [originalResList, setOriginalResList] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [rawData, setRawData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    const fetchRestaurantData = async () => {
-      try {
-        const response = await axios.get(
-          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-        );
-        // console.log(response.data.data);
+  const reslist = useRestaurantData();
 
-        setRawData(response);
+  const originalResList = useRestaurantData();
+  const rawData = useRestaurantData();
 
-        setResList(
-          response.data.data.cards[4].card.card.gridElements.infoWithStyle
-            .restaurants
-        );
-        setOriginalResList(
-          response.data.data.cards[4].card.card.gridElements.infoWithStyle
-            .restaurants
-        );
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchRestaurantData();
-  }, []);
+  const internetStatus = useCheckInternet();
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -55,13 +34,13 @@ const BodyComponent = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       searched();
     }
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "Backspace") {
+    if (event.key === 'Backspace') {
       setSearchTerm(event.target.value);
       searched();
     }
@@ -81,41 +60,54 @@ const BodyComponent = () => {
   };
 
   return (
-    <div className="bodyContainer">
-      {reslist.length == 0 ? (
-        <ShimmerUi />
-      ) : (
-        <div>
-          <div className="searchBar">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={handleChange}
-              onKeyPress={handleKeyPress}
-              onKeyDown={handleKeyDown}
-              className="searchInput"
-            />
-            <button className="searchButton" onClick={searched}>
-              Search
-            </button>
-          </div>
-          <div className="topRated">
-            <button onClick={highRatedRestaurants}>
-              Top Rated Restaurants
-            </button>
-          </div>
-          <div className="vegCheckBox">
-            <label>
-              <input type="checkbox" onChange={onlyVeg} />
-              only Veg
-            </label>
-          </div>
-        </div>
+    <div className='bg-gradient-to-r from-purple-100 to-red-100 min-h-screen'>
+      {internetStatus === false && (
+        <h1>Looks like Offline !!! Please check your internet connection</h1>
       )}
-      <CarouselMainComponent resdata={rawData} />
-      <CarouselComponent resdata={rawData} />
-      <ResContainer resdataFiltered={reslist} />
+      {internetStatus !== false && (
+        <>
+          {reslist.length == 0 ? (
+            <ShimmerUi />
+          ) : (
+            <div className='flex items-center ml-80'>
+              <div className='p-4 m-4 flex'>
+                <input
+                  type='text'
+                  placeholder='Search...'
+                  value={searchTerm}
+                  onChange={handleChange}
+                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
+                  className='mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-[400px] rounded-md sm:text-sm focus:ring-1'
+                />
+                <button
+                  className=' pl-4  pr-4 ml-6  bg-white text-black font-bold rounded-2xl border border-black hover:text-white hover:bg-gray-500'
+                  onClick={searched}
+                >
+                  Search
+                </button>
+              </div>
+              <div className='ml-2 mr-4'>
+                <button
+                  className='p-[10px] bg-white text-black font-bold rounded-2xl border border-black hover:text-white hover:bg-gray-500'
+                  onClick={highRatedRestaurants}
+                >
+                  Top Rated Restaurants
+                </button>
+              </div>
+              <div className='pl-4 pr-4 py-2.5 bg-white text-black font-bold rounded-2xl border border-black hover:text-white hover:bg-gray-500'>
+                <label>
+                  <input type='checkbox' onChange={onlyVeg} />
+                  only Veg
+                </label>
+              </div>
+            </div>
+          )}
+          <CarouselMainComponent resdata={rawData} />
+          <CarouselComponent resdata={rawData} />
+          <ResContainer resdataFiltered={reslist} />
+        </>
+      )}
     </div>
   );
 };

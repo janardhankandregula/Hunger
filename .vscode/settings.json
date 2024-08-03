@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {},
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.removeEmptyLines": true
+}
