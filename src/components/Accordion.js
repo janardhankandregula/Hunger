@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
-import AccordionItem from './AccordionItem';
-import MenuContentCard from './MenuContentCard';
+import React from "react";
+import { useState } from "react";
+import AccordionItem from "./AccordionItem";
+import MenuContentCard from "./MenuContentCard";
 
 const Accordion = ({ items }) => {
   // const [isOpen, setIsOpen] = useState(false);
@@ -16,13 +16,14 @@ const Accordion = ({ items }) => {
   };
 
   return (
-    <div className='w-full max-w-6xl mx-auto mt-4'>
+    <div className="w-full max-w-6xl mx-auto mt-4">
       <div>
-        {items.map((item, index) => {
+        {items?.map((item, index) => {
           const content2 = item.card.card.itemCards;
           // console.log(content2);
           return (
             <AccordionItem
+              data-testid="accId"
               key={index}
               title={item?.card?.card?.title}
               itemCardsAll={item.card.card.itemCards}

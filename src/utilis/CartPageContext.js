@@ -1,5 +1,5 @@
 // src/utilis/cartPageContext.js
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 // Create a Context
 const CartPageContext = createContext();
@@ -71,8 +71,8 @@ export const CartPageProvider = ({ children }) => {
 // Custom Hook to use CartPage Context
 export const useCartPage = () => {
   const context = useContext(CartPageContext);
-  if (context === undefined) {
-    throw new Error('useCartPage must be used within a CartPageProvider');
-  }
+  // if (context === undefined) {
+  //   throw new Error('useCartPage must be used within a CartPageProvider');
+  // }
   return context;
 };

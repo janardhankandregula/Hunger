@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 // const useCheckInternet = () => {
 //   return fetch("https://www.example.com")
 //     .then((response) => {
@@ -14,14 +14,14 @@ import { useEffect, useState } from "react";
 // };
 
 const useCheckInternet = () => {
-  const [onlineStatus, setOnlineStatus] = useState(true);
+  const [onlineStatus, setOnlineStatus] = useState('green');
   useEffect(() => {
-    window.addEventListener("offline", () => {
-      setOnlineStatus(false);
+    window.addEventListener('offline', () => {
+      setOnlineStatus('red');
     });
 
-    window.addEventListener("online", () => {
-      setOnlineStatus(true);
+    window.addEventListener('online', () => {
+      setOnlineStatus('green');
     });
   }, []);
 

@@ -13,6 +13,8 @@ import Menu from './components/Menu';
 import { LoginProvider } from './utilis/loginContext';
 
 import CartPage from './components/CartPage';
+import { Provider } from 'react-redux';
+import appStore from './utilis/appStore';
 
 const Grocery = lazy(() => import('./components/Grocery'));
 const About = lazy(() => import('./components/About'));
@@ -25,13 +27,15 @@ const AppLayout = () => {
   }, []);
   return (
     <div>
-      <LoginProvider>
-        <CartPageProvider>
-          <TailwindHeader />
+      <Provider store={appStore}>
+        <LoginProvider>
+          <CartPageProvider>
+            <TailwindHeader />
 
-          <Outlet />
-        </CartPageProvider>
-      </LoginProvider>
+            <Outlet />
+          </CartPageProvider>
+        </LoginProvider>
+      </Provider>
     </div>
   );
 };

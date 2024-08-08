@@ -83,28 +83,29 @@
 
 // export default Menu;
 
-import React from 'react';
-import Accordion from './Accordion';
-import { useState } from 'react';
-import ShimmerUi from './ShimmerUi';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import Accordion from "./Accordion";
+import { useState } from "react";
+import ShimmerUi from "./ShimmerUi";
+import { useParams } from "react-router-dom";
 
-import useRestaurantMenu from '../utilis/useRestaurantMenu';
+import useRestaurantMenu from "../utilis/useRestaurantMenu";
 
 const Menu = () => {
   const { resId } = useParams();
   const menuData = useRestaurantMenu(resId);
+  console.log(menuData);
 
   const itemCategory =
     menuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (filterCategory) =>
-        filterCategory.card.card['@type'] ===
-        'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
+        filterCategory.card.card["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     ) || [];
 
   return (
-    <div className='p-4'>
-      <Accordion items={itemCategory} />{' '}
+    <div className="p-4">
+      <Accordion items={itemCategory} />{" "}
     </div>
   );
 };

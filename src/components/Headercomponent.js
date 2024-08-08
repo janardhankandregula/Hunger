@@ -34,7 +34,7 @@ const HeaderComponent = () => {
             <Link to='/Grocery'>Grocery</Link>
           </li>
 
-          <li className='px-4'>Cart</li>
+          <li className='px-4'>🛒</li>
 
           <li className='px-4'>
             <button
